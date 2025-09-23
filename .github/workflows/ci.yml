@@ -15,7 +15,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Testes
+      - run: chmod +x mvnw
+      - name: Test
         run: make test
       - name: Build
         run: make build
