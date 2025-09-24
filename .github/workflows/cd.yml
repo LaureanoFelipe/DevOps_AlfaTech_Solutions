@@ -2,10 +2,10 @@ name: Continuous Delivery
 
 on:
   release:
-    types: [published]   # quando a release (do release-please) for publicada
+    types: [published]
   push:
     tags:
-      - 'v*'             # fallback: se criarem a tag diretamente
+      - 'v*'
     branches:
       - 'release/*'
 
