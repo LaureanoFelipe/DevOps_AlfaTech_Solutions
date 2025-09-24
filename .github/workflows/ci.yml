@@ -18,11 +18,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Ensure mvnw is executable
-        run: if [ -f mvnw ]; then chmod +x mvnw; fi
-
       - name: Testes
-        run: ./mvnw -B -ntp test || mvn -B -ntp test
+        run: make test
 
       - name: Build
-        run: ./mvnw -B -ntp clean package || mvn -B -ntp clean package
+        run: make build
