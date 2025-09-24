@@ -17,7 +17,7 @@ jobs:
   docker-publish:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: felipelaureano/alfadevops_alfatech_solutions
+      IMAGE_NAME: felipelaureano/devops_alfatech_solutions
 
     steps:
       - name: Checkout
@@ -39,16 +39,7 @@ jobs:
           images: ${{ env.IMAGE_NAME }}
           tags: |
             # ---- quando vier por TAG vX.Y.Z ----
-            type=semver,pattern={{version}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-            type=semver,pattern={{major}}.{{minor}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-            type=semver,pattern={{major}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
-            # latest só se release publicada e NÃO for prerelease
-            type=raw,value=latest,enable=${{ github.event_name == 'release' && !github.event.release.prerelease }}
-            # ---- branches: develop / release/* ----
-            type=raw,value=develop,enable=${{ endsWith(github.ref, '/develop') }}
-            type=raw,value={{branch}},enable=${{ startsWith(github.ref, 'refs/heads/release/') }}
-            # tag com SHA curto, útil para rastreio
-            type=sha,format=short
+            type=semver,pattern={{version}},enable=${{ startsWith(github.ref, 'refs/tags/v') || github.event_name == 'release' }}
 
       - name: Build and push (multi-arch)
         uses: docker/build-push-action@v6
