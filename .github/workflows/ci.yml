@@ -18,9 +18,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Garantir escrita no mvnw 
-        run: if [ -f mvnw ]; then chmod +x mvnw; fi
-
       - name: Testes
         run: make test
 

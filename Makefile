@@ -1,8 +1,9 @@
 build:
-	./mvnw -B -ntp clean package || mvn -B -ntp clean package
+	mvn clean
+	mvn package
 
 run:
-	./mvnw -B -ntp spring-boot:run
+	mvn spring-boot:run
 
 test:
-	./mvnw -B -ntp test || mvn -B -ntp test
+	mvn test
