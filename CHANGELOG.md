@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.1.0...v1.2.0) (2025-09-24)
+
+
+### Features
+
+* test ([7cfabe5](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/7cfabe5225fd4cb54770f113260532d683561bb9))
+
+
+### Bug Fixes
+
+* add gitignore ([65ae5ba](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/65ae5ba36fbc150e2f237e0e8f66c70ec01c3a0d))
+
 ## [1.1.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.0.0...v1.1.0) (2025-09-24)
 
 
