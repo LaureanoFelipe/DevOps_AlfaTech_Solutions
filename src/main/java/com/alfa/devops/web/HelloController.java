@@ -14,8 +14,9 @@ public class HelloController {
     return "pong";
   }
 
-  @GetMapping("/hello")
-  public String hello(@RequestParam(defaultValue = "world") String name) {
+  @GetMapping(value = "/hello", produces = "text/plain;charset=UTF-8")
+  public String hello(
+      @RequestParam(name = "name", required = false, defaultValue = "world") String name) {
     String envMsg = System.getenv().getOrDefault("MENSAGEM", message);
     return "Hello, " + name + "! " + envMsg;
   }
