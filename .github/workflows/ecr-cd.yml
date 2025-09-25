@@ -39,8 +39,14 @@ jobs:
       # Definir a tag da imagem = tag da release (ex: v1.3.1)
       - name: Compute image tag
         id: tag
+        shell: bash
         run: |
-          echo "TAG=${GITHUB_EVENT_NAME == 'release' && github.event.release.tag_name || 'manual'}" >> $GITHUB_OUTPUT
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+           echo "TAG=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TAG=manual" >> "$GITHUB_OUTPUT"
+          fi
+          
 
       # Build + push (apenas uma tag — sem latest)
       - name: Build and push (multi-arch)
@@ -50,7 +56,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            ${{ env.ECR_URI }}/${{ env.ECR_REPO }}:${{ steps.tag.outputs.TAG }}
+          tags: 746386302275.dkr.ecr.us-east-2.amazonaws.com/devops_alfatech_solutions:${{ steps.tag.outputs.TAG }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
