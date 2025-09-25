@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.2](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.3.1...v1.3.2) (2025-09-25)
+
+
+### Bug Fixes
+
+* cd ecs ([86f8858](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/86f8858116b99fecdf232b91132b8a4694423774))
+* cd ecs ([df3db0c](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/df3db0ce971e2653da52c39a0ada7538a4e751a5))
+
 ## [1.3.1](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.3.0...v1.3.1) (2025-09-25)
 
 
