@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.3.0...v1.3.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* teste ECS ([ef4b0c5](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/ef4b0c5e50c8b0ee827978d40eb5031bf83d2189))
+* teste ECS ([1a84e02](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/1a84e028d5c0dc2f104c3dae82357cd66cb56c8f))
+
 ## [1.3.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.2.0...v1.3.0) (2025-09-25)
 
 
