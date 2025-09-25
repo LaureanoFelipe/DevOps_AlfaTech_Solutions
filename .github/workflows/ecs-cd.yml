@@ -1,0 +1,63 @@
+name: Deploy to ECS (Fargate)
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1                 # ajuste
+      CLUSTER: alfa-cluster                 # ajuste
+      SERVICE: alfa-service                 # nome do service ECS
+      CONTAINER: alfa                       # nome do container na task def
+      IMAGE: docker.io/felipelaureano/devops_alfatech_solutions:${{ github.event.release.tag_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # baixa a task definition atual e troca só a imagem
+      - name: Render new task definition
+        id: taskdef
+        run: |
+          aws ecs describe-task-definition --task-definition alfa-task \
+            --query 'taskDefinition' > td.json
+          # troca a imagem só do container "alfa"
+          jq --arg IMG "${IMAGE}" '
+            .containerDefinitions |= map(
+              if .name=="'${CONTAINER}'" then .image=$IMG else . end
+            )
+            | .requiresCompatibilities=["FARGATE"]
+            | .networkMode="awsvpc"
+          ' td.json > new-td.json
+          echo "FILE=new-td.json" >> $GITHUB_OUTPUT
+
+      - name: Register task definition revision
+        id: register
+        run: |
+          ARN=$(aws ecs register-task-definition --cli-input-json file://${{ steps.taskdef.outputs.FILE }} \
+            --query 'taskDefinition.taskDefinitionArn' --output text)
+          echo "ARN=$ARN" >> $GITHUB_OUTPUT
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster $CLUSTER \
+            --service $SERVICE \
+            --task-definition ${{ steps.register.outputs.ARN }} \
+            --force-new-deployment
+
+      - name: Wait rollout
+        run: |
+          aws ecs wait services-stable --cluster $CLUSTER --services $SERVICE
