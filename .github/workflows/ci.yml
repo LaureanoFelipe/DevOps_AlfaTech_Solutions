@@ -20,6 +20,8 @@ jobs:
 
       - name: Testes
         run: make test
+      - name: Testes
+        run: make verify
 
       - name: Build
         run: make build
