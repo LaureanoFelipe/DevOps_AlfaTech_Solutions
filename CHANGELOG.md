@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.4.0...v1.4.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* ecr_cd ([19df534](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/19df534dd78f4cdbfcb66a82b8b08ff5b582c9de))
+* ecr_cd ([54e75ab](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/54e75abcc1b619caadac923f4163271fb2d8d9a4))
+
 ## [1.4.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.3.2...v1.4.0) (2025-09-25)
 
 
