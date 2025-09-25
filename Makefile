@@ -8,6 +8,9 @@ run:
 test:
 	mvn test
 
+verify:
+	mvn verify
+
 c_build:
 	docker build -t felipelaureano/devops_alfatech_solutions .
 
