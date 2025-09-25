@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.2.0...v1.3.0) (2025-09-25)
+
+
+### Features
+
+* edit dockerhub_cd + teste ci ([d1ba60b](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/d1ba60b1df7c4d9fe2d854cb3022bacd1b196ef2))
+* edit dockerhub_cd + teste ci ([e912a23](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/e912a2381696978c1ef2e9ebce8136540505398d))
+
 ## [1.2.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.1.0...v1.2.0) (2025-09-24)
 
 
