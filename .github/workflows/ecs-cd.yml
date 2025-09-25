@@ -11,10 +11,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_REGION: us-east-1                 # ajuste
-      CLUSTER: alfa-cluster                 # ajuste
-      SERVICE: alfa-service                 # nome do service ECS
-      CONTAINER: alfa                       # nome do container na task def
+      AWS_REGION: us-east-2
+      CLUSTER: ambitious-cat-nb5psp
+      SERVICE: alfa-task-service-lo30iym6
+      CONTAINER: alfa
       IMAGE: docker.io/felipelaureano/devops_alfatech_solutions:${{ github.event.release.tag_name }}
 
     steps:
@@ -25,7 +25,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: us-east-2
 
       # baixa a task definition atual e troca só a imagem
       - name: Render new task definition
