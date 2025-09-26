@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: us-east-2
-      CLUSTER: bright-ostrich-tu36a2            # seu cluster
-      SERVICE: alfa-service                      # <-- crie um service com esse nome OU ajuste
+      CLUSTER: bright-ostrich-tu36a2
+      SERVICE: alfa-task-service-4vyllehr           
       CONTAINER: alfa                            # nome do container na TD
       IMAGE: felipelaureano/devops_alfatech_solutions:${{ github.event.release.tag_name || 'latest' }}
 
