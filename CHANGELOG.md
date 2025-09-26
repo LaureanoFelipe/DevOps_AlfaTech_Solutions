@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.5.0...v1.5.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* edit cd ([94006ac](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/94006ac6699cf0bf3b5416e0e2edae88feacdfe2))
+* edit cd ([0ec48e5](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/0ec48e5d57bd4752a09546d2ac5b47ae7479cec9))
+
 ## [1.5.0](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.4.1...v1.5.0) (2025-09-26)
 
 
