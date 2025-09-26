@@ -31,7 +31,9 @@ jobs:
       # baixa a TD atual e mantém apenas campos válidos p/ registrar nova revisão
       - name: Render new task definition
         id: taskdef
+        shell: bash
         run: |
+          # captura apenas os campos registráveis
           aws ecs describe-task-definition --task-definition alfa-task \
             --query 'taskDefinition | {
               family: family,
@@ -49,6 +51,8 @@ jobs:
             .containerDefinitions |= map(
               if .name==$NAME then .image=$IMG else . end
             )
+            # remove qualquer chave com valor null (ex.: taskRoleArn/executionRoleArn)
+            | with_entries(select(.value != null))
           ' td.json > new-td.json
 
           echo "FILE=new-td.json" >> $GITHUB_OUTPUT
