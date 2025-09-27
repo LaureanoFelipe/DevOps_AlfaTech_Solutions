@@ -16,7 +16,7 @@ WORKDIR /opt/app
 COPY --from=build /opt/app/target/*.jar /opt/app/app.jar
 
 # App Java padrão Spring Boot escuta em 8080
-EXPOSE 8080
+EXPOSE 80
 
 # Healthcheck simples no /ping (ajuste se quiser outro endpoint)
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD wget -qO- http://localhost:8080/ping || exit 1
