@@ -7,15 +7,11 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  # Repositório no ECR (ajuste se quiser outro nome)
-  ECR_REPOSITORY: devops_alfatech_solutions
-  # Cluster e Service já existentes no ECS (ajuste para os seus)
-  ECS_CLUSTER: bright-ostrich-tu36a2
-  ECS_SERVICE: alfa-task-service-4vyllehr
-  # Caminho do template de Task Definition
-  ECS_TASK_DEFINITION: .github/workflows/task-ecs.json
-  # Nome do container dentro da TD
-  CONTAINER_NAME: alfa
+  ECR_REPOSITORY: alfa
+  ECS_SERVICE: alfa-task-service
+  ECS_CLUSTER: alfatech
+  ECS_TASK_DEFINITION: .github/workflows/task-ecs.json 
+  CONTAINER_NAME: alfa  
 
 permissions:
   contents: read
