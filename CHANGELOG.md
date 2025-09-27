@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.3](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.6.2...v1.6.3) (2025-09-27)
+
+
+### Bug Fixes
+
+* teste ([aa6e540](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/aa6e5409b7ca8f6a8af414eb35ad7d2771128bbc))
+* teste ([bb6759b](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/commit/bb6759b151765210439a8d259524697bb1040f29))
+
 ## [1.6.2](https://github.com/LaureanoFelipe/DevOps_AlfaTech_Solutions/compare/v1.6.1...v1.6.2) (2025-09-27)
 
 
