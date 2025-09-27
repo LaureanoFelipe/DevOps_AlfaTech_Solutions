@@ -1,0 +1,88 @@
+name: Deploy to Amazon ECS
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: us-east-2
+  # Repositório no ECR (ajuste se quiser outro nome)
+  ECR_REPOSITORY: devops_alfatech_solutions
+  # Cluster e Service já existentes no ECS (ajuste para os seus)
+  ECS_CLUSTER: bright-ostrich-tu36a2
+  ECS_SERVICE: alfa-task-service-4vyllehr
+  # Caminho do template de Task Definition
+  ECS_TASK_DEFINITION: .github/workflows/task-ecs.json
+  # Nome do container dentro da TD
+  CONTAINER_NAME: alfa
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Compute image tag
+        id: tag
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "TAG=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TAG=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build and push image to ECR (single-arch)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: 746386302275.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # (Opcional) valida o nome do container no JSON
+      - name: Validate container name in task def
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y jq
+          jq -e '.containerDefinitions[] | select(.name=="'${CONTAINER_NAME}'")' \
+            "${ECS_TASK_DEFINITION}" > /dev/null
+
+      # Renderiza a task definition trocando a imagem
+      - name: Fill in the new image in the task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: 746386302275.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ steps.tag.outputs.TAG }}
+
+      # Faz o rollout no service e espera estabilizar
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true

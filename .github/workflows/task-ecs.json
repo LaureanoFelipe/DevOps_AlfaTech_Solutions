@@ -1,0 +1,28 @@
+{
+  "family": "alfa-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::746386302275:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::746386302275:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "alfa",
+      "image": "746386302275.dkr.ecr.us-east-2.amazonaws.com/devops_alfatech_solutions:REPLACEME",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX"
+  }
+}
