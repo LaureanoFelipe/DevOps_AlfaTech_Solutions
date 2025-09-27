@@ -3,7 +3,7 @@
 
   <groupId>com.alfa.devops</groupId>
   <artifactId>devops-demo</artifactId>
-  <version>1.6.4</version>
+  <version>1.6.5-SNAPSHOT</version>
   <name>devops-demo</name>
   <description>Demo app for CI/CD pipelines</description>
 
