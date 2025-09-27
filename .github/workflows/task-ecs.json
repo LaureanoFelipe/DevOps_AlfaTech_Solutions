@@ -6,7 +6,7 @@
   "containerDefinitions": [
     {
       "name": "alfa",
-      "image": "746386302275.dkr.ecr.us-east-2.amazonaws.com/devops_alfatech_solutions:REPLACEME",
+      "image": "746386302275.dkr.ecr.us-east-2.amazonaws.com/alfa:REPLACEME",
       "essential": true,
       "portMappings": [
         {
